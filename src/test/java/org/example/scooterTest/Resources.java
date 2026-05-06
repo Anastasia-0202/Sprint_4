@@ -1,4 +1,4 @@
-package org.example.scooterTest;
+package org.example.scootertest;
 
 public class Resources {
     public static final String answer1Text = "Сутки — 400 рублей. Оплата курьеру — наличными или картой.";

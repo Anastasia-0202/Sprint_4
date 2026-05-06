@@ -1,4 +1,4 @@
-package org.example.scooterTest;
+package org.example.scootertest;
 
 import org.junit.After;
 import org.junit.Test;
@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static org.example.scooterTest.Resources.confirmHeader;
+import static org.example.scootertest.Resources.confirmHeader;
 
 @RunWith(Parameterized.class)
 public class OrderTest {
@@ -49,11 +49,11 @@ public class OrderTest {
         // Открыть страницу заказа Яндекс Самокат
         driver.get("https://qa-scooter.praktikum-services.ru");
         // Создать объект класса с домашней страницей
-        HomePageScooter objHomePage = new HomePageScooter(driver);
+        org.example.scootertest.HomePageScooter objHomePage = new org.example.scootertest.HomePageScooter(driver);
         // Нажать на кнопку Заказать на чердаке
         objHomePage.clickHeaderOrderButton();
         // Создать объект класса со страницей заказа
-        OrderPageScooter objOrderPage = new OrderPageScooter(driver);
+        org.example.scootertest.OrderPageScooter objOrderPage = new OrderPageScooter(driver);
         // Принять куки
         objOrderPage.acceptCookieButtonClick();
         // Позитивный сценарий оформления заказа

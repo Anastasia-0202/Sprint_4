@@ -1,4 +1,4 @@
-package org.example.scooterTest;
+package org.example.scootertest;
 
 import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.*;
