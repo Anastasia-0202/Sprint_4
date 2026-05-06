@@ -1,4 +1,4 @@
-package org.example.scootertest;
+package org.example.scooterTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -7,18 +7,18 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.example.scootertest.Resources.*;
+import static org.example.scooterTest.Resources.*;
 
 public class FAQTest {
     private WebDriver driver;
-    private org.example.scootertest.HomePageScooter homePage;
+    private HomePageScooter homePage;
 
     @Before
     public void setUp() {
         // Автоматически загружает и настраивает ChromeDriver
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        homePage = new org.example.scootertest.HomePageScooter(driver);
+        homePage = new HomePageScooter(driver);
         // Открываем страницу один раз перед тестами
         driver.get("https://qa-scooter.praktikum-services.ru");
     }
