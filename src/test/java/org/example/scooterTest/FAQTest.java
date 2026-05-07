@@ -25,39 +25,22 @@ public class FAQTest {
 
     @Test
     public void FAQCorrectAnswerText() {
-        // Проверка соответствия текста ответов с ожидаемыми
+        String[] expectedAnswers = {
+                Resources.RENTAL_PRICE_INFO,
+                Resources.MULTIPLE_SCOOTERS_INFO,
+                Resources.RENTAL_START_INFO,
+                Resources.DELIVERY_START_DATE_INFO,
+                Resources.ONLINE_SUPPORT_INFO,
+                Resources.BATTERY_LIFE_INFO,
+                Resources.CANCEL_BEFORE_DELIVERY_INFO,
+                Resources.SERVICE_AREA_INFO
+        };
 
-        // Вопрос 1
-        homePage.clickQuestion(1);
-        homePage.isCorrectText(1, answer1Text);
-
-        // Вопрос 2
-        homePage.clickQuestion(2);
-        homePage.isCorrectText(2, answer2Text);
-
-        // Вопрос 3
-        homePage.clickQuestion(3);
-        homePage.isCorrectText(3, answer3Text);
-
-        // Вопрос 4
-        homePage.clickQuestion(4);
-        homePage.isCorrectText(4, answer4Text);
-
-        // Вопрос 5
-        homePage.clickQuestion(5);
-        homePage.isCorrectText(5, answer5Text);
-
-        // Вопрос 6
-        homePage.clickQuestion(6);
-        homePage.isCorrectText(6, answer6Text);
-
-        // Вопрос 7
-        homePage.clickQuestion(7);
-        homePage.isCorrectText(7, answer7Text);
-
-        // Вопрос 8
-        homePage.clickQuestion(8);
-        homePage.isCorrectText(8, answer8Text);
+        for (int i = 0; i < expectedAnswers.length; i++) {
+            int questionNumber = i + 1;
+            homePage.clickQuestion(questionNumber);
+            homePage.isCorrectText(questionNumber, expectedAnswers[i]);
+        }
     }
 
     @After

@@ -43,34 +43,39 @@ public class OrderTest {
     }
 
     @Test
-    public void OrderPositiveTest() {
-        // Создать веб-драйвер для Firefox
+    public void orderPositiveTest() {
+        // Создать веб‑драйвер для Firefox
         driver = new FirefoxDriver();
         // Открыть страницу заказа Яндекс Самокат
         driver.get("https://qa-scooter.praktikum-services.ru");
+
         // Создать объект класса с домашней страницей
-        org.example.scootertest.HomePageScooter objHomePage = new org.example.scootertest.HomePageScooter(driver);
-        // Нажать на кнопку Заказать на чердаке
-        objHomePage.clickHeaderOrderButton();
+        HomePageScooter homePage = new HomePageScooter(driver);
+        // Нажать на кнопку «Заказать» на чердаке
+        homePage.clickHeaderOrderButton();
+
         // Создать объект класса со страницей заказа
-        org.example.scootertest.OrderPageScooter objOrderPage = new OrderPageScooter(driver);
+        OrderPageScooter orderPage = new OrderPageScooter(driver);
         // Принять куки
-        objOrderPage.acceptCookieButtonClick();
+        orderPage.clickAcceptCookieButton();
+
         // Позитивный сценарий оформления заказа
-        objOrderPage.setName(name);
-        objOrderPage.setSurname(surname);
-        objOrderPage.setAddress(address);
-        objOrderPage.setSubway(subway);
-        objOrderPage.setPhoneNumber(phoneNumber);
-        objOrderPage.clickOrderNextButton();
-        objOrderPage.setDate(date);
-        objOrderPage.setRentalPeriod(rentalPeriod);
-        objOrderPage.setColor(color);
-        objOrderPage.setComment(comment);
-        objOrderPage.clickOrderCreateButton();
-        objOrderPage.clickOrderConfirmButton();
+        orderPage.setFirstName(name);
+        orderPage.setLastName(surname);
+        orderPage.setAddress(address);
+        orderPage.setSubway(subway);
+        orderPage.setPhoneNumber(phoneNumber);
+        orderPage.clickOrderNextButton();
+
+        orderPage.setRentalDate(date);
+        orderPage.setRentalPeriod(rentalPeriod);
+        orderPage.selectColor(color);
+        orderPage.setComment(comment);
+        orderPage.clickOrderCreateButton();
+        orderPage.clickOrderConfirmButton();
+
         // Проверить, что открылась страница успешного создания заказа
-        objOrderPage.isPageOpen(objOrderPage.getConfirmHeader() ,confirmHeader);
+        orderPage.isPageOpen(orderPage.getConfirmHeader(), confirmHeader);
     }
 
     @After
