@@ -1,52 +1,60 @@
 package org.example.scootertest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.Arrays;
+import java.util.Collection;
 import static org.example.scootertest.Resources.*;
 
+@RunWith(Parameterized.class)
 public class FAQTest {
     private WebDriver driver;
-    private org.example.scootertest.HomePageScooter homePage;
+    private HomePageScooter homePage;
+
+    private final int questionNumber;
+    private final String expectedText;
+
+    public FAQTest(int questionNumber, String expectedText) {
+        this.questionNumber = questionNumber;
+        this.expectedText = expectedText;
+    }
+
+    @Parameters
+    public static Collection<Object[]> provideFAQData() {
+        return Arrays.asList(new Object[][] {
+                {1, RENTAL_PRICE_INFO},
+                {2, MULTIPLE_SCOOTERS_INFO},
+                {3, RENTAL_START_INFO},
+                {4, DELIVERY_START_DATE_INFO},
+                {5, ONLINE_SUPPORT_INFO},
+                {6, BATTERY_LIFE_INFO},
+                {7, CANCEL_BEFORE_DELIVERY_INFO},
+                {8, SERVICE_AREA_INFO}
+        });
+    }
 
     @Before
     public void setUp() {
-        // Автоматически загружает и настраивает ChromeDriver
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        homePage = new org.example.scootertest.HomePageScooter(driver);
-        // Открываем страницу один раз перед тестами
+        homePage = new HomePageScooter(driver);
         driver.get("https://qa-scooter.praktikum-services.ru");
     }
 
     @Test
     public void FAQCorrectAnswerText() {
-        String[] expectedAnswers = {
-                Resources.RENTAL_PRICE_INFO,
-                Resources.MULTIPLE_SCOOTERS_INFO,
-                Resources.RENTAL_START_INFO,
-                Resources.DELIVERY_START_DATE_INFO,
-                Resources.ONLINE_SUPPORT_INFO,
-                Resources.BATTERY_LIFE_INFO,
-                Resources.CANCEL_BEFORE_DELIVERY_INFO,
-                Resources.SERVICE_AREA_INFO
-        };
-
-        for (int i = 0; i < expectedAnswers.length; i++) {
-            int questionNumber = i + 1;
-            homePage.clickQuestion(questionNumber);
-            homePage.isCorrectText(questionNumber, expectedAnswers[i]);
-        }
+        homePage.clickQuestion(questionNumber);
+        homePage.isCorrectText(questionNumber, expectedText);
     }
 
     @After
     public void tearDown() {
         if (driver != null) {
-            driver.quit(); // Безопасное закрытие драйвера
+            driver.quit();
         }
     }
 }
